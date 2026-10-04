@@ -1,0 +1,41 @@
+# Install only in the isolated paldedania/paldedania profile repository.
+name: Update LeetCode profile
+on:
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: 'Obtain new data. Disable only to verify an identical saved-input rerun.'
+        type: boolean
+        default: true
+  schedule:
+    - cron: '23 2 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: leetcode-profile
+  cancel-in-progress: false
+jobs:
+  update:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, observed 2026-10-03
+      - name: Obtain new data using project 03's shared producer
+        id: producer
+        if: github.event_name != 'workflow_dispatch' || inputs.refresh
+        continue-on-error: true
+        run: python3 leetcode-updater/producer.py --config leetcode-updater/config.json
+      - name: Validate and update only the marked section
+        run: python3 leetcode-updater/updater.py --config leetcode-updater/config.json --write
+      - name: Commit only when README changed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bash leetcode-updater/commit-readme.sh
+          git push
+      - name: Report a failed refresh honestly
+        if: steps.producer.outcome == 'failure'
+        run: |
+          echo '::error::Producer refresh failed. Last known data retained and labelled stale when usable.'
+          exit 1

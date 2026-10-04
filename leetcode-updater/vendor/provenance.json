@@ -1,0 +1,7 @@
+{
+  "project": "03",
+  "source": "projects/leetcode-desktop-widget/widget.py",
+  "sha256": "707029be138be902f655d08d59fbd09e9ef00bf9e674410ae557f22fbf29183b",
+  "copied_at": "2026-10-04",
+  "policy": "Unchanged read-only source copy; no independent fetching implementation."
+}

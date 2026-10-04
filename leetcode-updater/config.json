@@ -1,0 +1,10 @@
+{
+  "username": "paldedania",
+  "daily_goal": 3,
+  "weekly_goal": 21,
+  "snapshot": "status.json",
+  "snapshot_format": "project3-status",
+  "readme": "../README.md",
+  "max_age_hours": 48,
+  "allow_sample": false
+}
