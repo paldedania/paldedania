@@ -9,18 +9,18 @@
     "medium": 1,
     "hard": 0
   },
-  "last_success": "2026-10-09T09:17:28+00:00",
-  "last_attempt": "2026-10-09T09:17:28+00:00",
+  "last_success": "2026-10-10T08:39:35+00:00",
+  "last_attempt": "2026-10-10T08:39:34+00:00",
   "stale": false,
   "error": null,
   "refresh_seconds": 86400,
   "timezone": "Asia/Kolkata",
-  "next_refresh": "2026-10-10T09:17:28+00:00",
+  "next_refresh": "2026-10-11T08:39:34+00:00",
   "weekly": {
     "start": "2026-10-05",
     "goal": 21,
     "observed_change": 0,
-    "baseline_at": "2026-10-09T09:17:28+00:00",
+    "baseline_at": "2026-10-10T08:39:35+00:00",
     "note": "Net change since the first observation this week. Earlier solves are unknown."
   }
 }
